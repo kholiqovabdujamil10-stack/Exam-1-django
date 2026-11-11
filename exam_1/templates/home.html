@@ -6,9 +6,9 @@
 <a href="{% url 'create_author' %}">Add Author</a>
 
 {% for author in authors %}
-    <p>{{ author.name_author }}</p>
-    <a href="{% url 'update_author' author.id %}">Update</a>
-    <a href="{% url 'delete_author' author.id %}">Delete</a>
+<p>{{ author.name_author }}</p>
+<a href="{% url 'update_author' author.id %}">Update</a>
+<a href="{% url 'delete_author' author.id %}">Delete</a>
 {% endfor %}
 
 
@@ -17,11 +17,16 @@
 <a href="{% url 'create_book' %}">Add Book</a>
 
 {% for book in books %}
-    <p>{{ book.book_name }} — {{ book.author.name_author }}</p>
-    <p>{{ book.title }}</p>
-    <p>{{ book.caption }}</p>
-    <a href="{% url 'update_book' book.id %}">Update</a>
-    <a href="{% url 'delete_book' book.id %}">Delete</a>
+<p>{{ book.book_name }} — {{ book.author.name_author }}</p>
+<p>{{ book.title }}</p>
+<p>{{ book.caption }}</p>
+
+{% if book.picture %}
+<img src="{{ book.picture.url }}" width="150">
+{% endif %}
+
+<a href="{% url 'update_book' book.id %}">Update</a>
+<a href="{% url 'delete_book' book.id %}">Delete</a>
 {% endfor %}
 
 
@@ -30,13 +35,13 @@
 <a href="{% url 'create_order' %}">Add Order</a>
 
 {% for order in orders %}
-    <p>{{ order.name_customer }}</p>
-    {% for book in order.book_name.all %}
-        <p>{{ book.book_name }}</p>
-    {% endfor %}
-    <p>{{ order.time_taken }}</p>
-    <p>{{ order.time_bring }}</p>
-    <a href="{% url 'update_order' order.id %}">Update</a>
-    <a href="{% url 'delete_order' order.id %}">Delete</a>
+<p>{{ order.name_customer }}</p>
+{% for book in order.book_name.all %}
+<p>{{ book.book_name }}</p>
+{% endfor %}
+<p>{{ order.time_taken }}</p>
+<p>{{ order.time_bring }}</p>
+<a href="{% url 'update_order' order.id %}">Update</a>
+<a href="{% url 'delete_order' order.id %}">Delete</a>
 {% endfor %}
 {% endblock %}

@@ -12,6 +12,7 @@ class Books(models.Model):
     book_name = models.TextField()
     title = models.TextField()
     caption = models.TextField()
+    picture = models.ImageField(upload_to='images/', blank=True, null=True)
     status = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -21,5 +22,6 @@ class Orders(models.Model):
     book_name = models.ManyToManyField(Books)
     time_taken = models.DateField()
     time_bring = models.DateField()
+    picture = models.ImageField(upload_to='images/', blank=True, null=True)
     status = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)

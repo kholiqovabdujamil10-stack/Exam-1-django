@@ -1,20 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <h1>Book</h1>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
+
     <input type="text" name="book_name" placeholder="Book name" value="{{ book.book_name }}">
+
     <input type="text" name="title" placeholder="Title" value="{{ book.title }}">
+
     <input type="text" name="caption" placeholder="Caption" value="{{ book.caption }}">
 
     <select name="author">
         {% for author in authors %}
-            <option value="{{ author.id }}" {% if book.author.id == author.id %}selected{% endif %}>{{ author.name_author }}</option>
+        <option value="{{ author.id }}" {% if book.author.id == author.id %}selected{% endif %}>
+            {{ author.name_author }}
+        </option>
         {% endfor %}
     </select>
 
+    <label for="picture" class="upload-label">
+        <span>Выберите фото</span>
+        <input type="file" name="picture" id="picture" accept="image/*">
+    </label>
     <button type="submit">Save</button>
 </form>
+
+{% if book.picture %}
+<h3>Current picture:</h3>
+<img src="{{ book.picture.url }}" width="150">
+{% endif %}
 {% endblock %}

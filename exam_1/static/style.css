@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 30px;
+    color: #333;
+}
+
+h1 {
+    color: #263b5e;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background: #3978c6;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin: 5px 3px;
+}
+
+a:hover {
+    background: #24558f;
+}
+
+p {
+    margin: 8px 0;
+}
+
+img {
+    display: block;
+    margin: 10px 0;
+    border-radius: 8px;
+    max-width: 150px;
+    height: auto;
+    object-fit: cover;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    box-shadow: 0 2px 8px #ddd;
+}
+
+input,
+select {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background: #28a36a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1e8052;
+}
+
+.upload-label {
+    display: inline-block;
+    background: #3978c6;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.upload-label:hover {
+    background: #24558f;
+}
+
+.upload-label input {
+    display: none;
+}

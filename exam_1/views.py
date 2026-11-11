@@ -43,7 +43,8 @@ def create_book(request):
         book_name = request.POST.get('book_name')
         title = request.POST.get('title')
         caption = request.POST.get('caption')
-        Books.objects.create(author=author,book_name=book_name,title=title,caption=caption)
+        picture = request.FILES.get('picture')
+        Books.objects.create(author=author,book_name=book_name,title=title,caption=caption, picture=picture)
         return redirect('home')
     return render(request,'book.html',{'authors':authors})
 
@@ -56,6 +57,9 @@ def update_book(request,id):
         book.book_name = request.POST.get('book_name')
         book.title = request.POST.get('title')
         book.caption = request.POST.get('caption')
+        picture = request.FILES.get('picture')
+        if picture:
+            book.picture = picture
         book.save()
         return redirect('home')
     return render(request,'book.html',{'book':book,'authors':authors})

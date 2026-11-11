@@ -10,7 +10,8 @@
     <label>Books</label>
     <select name="book_name" multiple>
         {% for book in books %}
-            <option value="{{ book.id }}" {% if book in order.book_name.all %}selected{% endif %}>{{ book.book_name }}</option>
+        <option value="{{ book.id }}" {% if book in order.book_name.all %}selected{% endif %}>{{ book.book_name }}
+        </option>
         {% endfor %}
     </select>
 
