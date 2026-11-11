@@ -1,28 +1,25 @@
 from django.db import models
-from datetime import datetime
 
-# Create your models here.
 
 class Author(models.Model):
     name_author = models.TextField()
-    book_name = models.ManyToOneRel()
-    is_active = models.BooleanField()
-    created_at = models.DateField(default=datetime.now())
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Books(models.Model):
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
     book_name = models.TextField()
     title = models.TextField()
     caption = models.TextField()
     status = models.BooleanField(default=True)
-    created_at = models.DateField(default=datetime.now())
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Orders(models.Model):
-    name_author = models.ManyToManyField
     name_customer = models.TextField()
-    book_name = models.ManyToManyField()
+    book_name = models.ManyToManyField(Books)
     time_taken = models.DateField()
     time_bring = models.DateField()
     status = models.BooleanField(default=True)
-    created_at = models.DateField(default=datetime.now())
+    created_at = models.DateTimeField(auto_now_add=True)
