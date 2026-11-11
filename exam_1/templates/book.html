@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Add Book</h1>
+<h1>Book</h1>
 
 <form method="POST">
     {% csrf_token %}
-    <input type="text" name="book_name" placeholder="Book name">
-    <input type="text" name="title" placeholder="Title">
-    <input type="text" name="caption" placeholder="Caption">
+    <input type="text" name="book_name" placeholder="Book name" value="{{ book.book_name }}">
+    <input type="text" name="title" placeholder="Title" value="{{ book.title }}">
+    <input type="text" name="caption" placeholder="Caption" value="{{ book.caption }}">
 
     <select name="author">
         {% for author in authors %}
-            <option value="{{ author.id }}">{{ author.name_author }}</option>
+            <option value="{{ author.id }}" {% if book.author.id == author.id %}selected{% endif %}>{{ author.name_author }}</option>
         {% endfor %}
     </select>
 

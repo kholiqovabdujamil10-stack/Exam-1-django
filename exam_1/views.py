@@ -4,8 +4,11 @@ from .models import Author,Books,Orders
 
 def home(request):
     authors = Author.objects.all()
-    return render(request, 'home.html', {'authors': authors})
+    books = Books.objects.all()
+    orders = Orders.objects.all()
+    return render(request,'home.html',{'authors':authors,'books':books,'orders':orders})
 
+# ==== Author ==== 
 
 def create_author(request):
     if request.method == 'POST':
@@ -31,6 +34,7 @@ def delete_author(request, id):
     author.delete()
     return redirect('home')
 
+# ==== Books ====
 
 def create_book(request):
     authors = Author.objects.all()
@@ -60,4 +64,37 @@ def update_book(request,id):
 def delete_book(request,id):
     book = Books.objects.get(id=id)
     book.delete()
+    return redirect('home')
+
+# ==== Orders ====
+
+def create_order(request):
+    books = Books.objects.all()
+    if request.method == 'POST':
+        name_customer = request.POST.get('name_customer')
+        time_taken = request.POST.get('time_taken')
+        time_bring = request.POST.get('time_bring')
+        order = Orders.objects.create(name_customer=name_customer,time_taken=time_taken,time_bring=time_bring)
+        order.book_name.set(request.POST.getlist('book_name'))
+        return redirect('home')
+    return render(request,'order.html',{'books':books})
+
+
+def update_order(request,id):
+    order = Orders.objects.get(id=id)
+    books = Books.objects.all()
+    if request.method == 'POST':
+        order.name_customer = request.POST.get('name_customer')
+        order.time_taken = request.POST.get('time_taken')
+        order.time_bring = request.POST.get('time_bring')
+        order.save()
+        order.book_name.set(request.POST.getlist('book_name'))
+        return redirect('home')
+    return render(request,'order.html',{'order':order,'books':books})
+
+
+
+def delete_order(request,id):
+    order = Orders.objects.get(id=id)
+    order.delete()
     return redirect('home')

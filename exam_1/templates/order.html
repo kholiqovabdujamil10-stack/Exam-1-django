@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Order</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="name_customer" placeholder="Customer name" value="{{ order.name_customer }}">
+
+    <label>Books</label>
+    <select name="book_name" multiple>
+        {% for book in books %}
+            <option value="{{ book.id }}" {% if book in order.book_name.all %}selected{% endif %}>{{ book.book_name }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Time taken</label>
+    <input type="date" name="time_taken" value="{{ order.time_taken|date:'Y-m-d' }}">
+
+    <label>Time bring</label>
+    <input type="date" name="time_bring" value="{{ order.time_bring|date:'Y-m-d' }}">
+
+    <button type="submit">Save</button>
+</form>
+{% endblock %}
